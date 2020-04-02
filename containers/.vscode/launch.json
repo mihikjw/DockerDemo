@@ -11,7 +11,19 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb"
+            "linux": {
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing"
+                    }
+                ]
+            },
+
+            "osx": {
+                "MIMode": "lldb"
+            }
         }
     ]
 }
