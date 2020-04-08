@@ -77,12 +77,11 @@ WORKDIR /code
 COPY ./main.py .
 CMD ["python3", "main.py"]
 ```
-
-    - *FROM ubuntu*: The 'FROM' clause dictates the base Image to build your Image from. If in doubt, Ubuntu is a good start or Alpine for an ultra-small Linux distro.
-    - *RUN apt update -y && apt install -y python3*: The 'RUN' command allows you to run any shell command inside the image, any changes or output files will be stored in the image. The example command is to install the Python3 interpreter as a dependency.
-    - *WORKDIR /code*: So far all commands have been running in directory '/'. The 'WORKDIR' command creates and changes your working directory to the specified dir. General best practice is to create your own at the root, as seen in this Dockerfile example.
-    - *COPY ./main.py .*: The 'COPY' command, copies a file from the Host to the Image. The first arg is the source, the latter the target. You must give the full path relative to the location of the Dockerfile. If the target filename is the same as the source, you can just put '.'. The target file will be put into the directory relative to the set 'WORKDIR' path.
-    - *CMD ["python3", "main.py"]*: The 'CMD' command, declares the command to be run when the Container is executed. Each arg is separated in an array, this is reasonably self-explanatory. 
+- *FROM ubuntu*: The 'FROM' clause dictates the base Image to build your Image from. If in doubt, Ubuntu is a good start or Alpine for an ultra-small Linux distro.
+- *RUN apt update -y && apt install -y python3*: The 'RUN' command allows you to run any shell command inside the image, any changes or output files will be stored in the image. The example command is to install the Python3 interpreter as a dependency.
+- *WORKDIR /code*: So far all commands have been running in directory '/'. The 'WORKDIR' command creates and changes your working directory to the specified dir. General best practice is to create your own at the root, as seen in this Dockerfile example.
+- *COPY ./main.py .*: The 'COPY' command, copies a file from the Host to the Image. The first arg is the source, the latter the target. You must give the full path relative to the location of the Dockerfile. If the target filename is the same as the source, you can just put '.'. The target file will be put into the directory relative to the set 'WORKDIR' path.
+- *CMD ["python3", "main.py"]*: The 'CMD' command, declares the command to be run when the Container is executed. Each arg is separated in an array, this is reasonably self-explanatory. 
 
 3. Take the below and save into ```docker-compose.yml```:
 ``` YAML
@@ -95,15 +94,14 @@ services:
       dockerfile: Dockerfile
     image: testing:test
 ```
-
-    - *version: '3'*: The defines the version of docker-compose - unless a new version is released, 3 is the default
-    - *services*: Defines the services
-        - *test*: This is the name of the image in the YAML file - must be unique inside the YAML file
-            - *container_name*: This is the name of the container once created, additional replicas will be appended with '_X' where X is a number
-            - *build*: This defines options for building the container
-                - *context: .*: This defines the directory to search for a Dockerfile
-                - *dockerfile: Dockerfile*: This defines the name of the Dockerfile to use during the build, default is 'Dockerfile' but its in this example to be specific
-            - image: This defines the name of the image to be saved, in the format {repository}:{image_name}
+- *version: '3'*: The defines the version of docker-compose - unless a new version is released, 3 is the default
+- *services*: Defines the services
+    - *test*: This is the name of the image in the YAML file - must be unique inside the YAML file
+        - *container_name*: This is the name of the container once created, additional replicas will be appended with '_X' where X is a number
+        - *build*: This defines options for building the container
+            - *context: .*: This defines the directory to search for a Dockerfile
+            - *dockerfile: Dockerfile*: This defines the name of the Dockerfile to use during the build, default is 'Dockerfile' but its in this example to be specific
+        - image: This defines the name of the image to be saved, in the format {repository}:{image_name}
 
 4. Start the Build & Run workflow with the command ```docker-compose up``` from inside the 'test_image' directory. You'll see the Ubuntu base image being pulled, then the process of building your image, then running the container and exiting. 
 5. To clean up all the created containers in the docker-compose.yml file, run ```docker-compose down```.
