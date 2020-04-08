@@ -10,7 +10,7 @@ class HttpHandlers():
     redis_client: Redis
 
     @staticmethod
-    def visits():
+    def visits() -> (dict or None) and int:
         result_body = None
         result_code = -1
 
