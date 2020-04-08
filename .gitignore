@@ -1,1 +1,3 @@
 test_image
+webapp/webserver/logs/*
+webapp/redis/*

@@ -1,0 +1,44 @@
+version: '3.0'
+networks:
+    public-net:
+        internal: false
+    app-net:
+        internal: true
+    db-net:
+        internal: true
+services:
+    webserver:
+        container_name: webserver
+        build:
+            context: ./webserver
+            dockerfile: Dockerfile
+        image: dockerdemo:webserver
+        networks:
+            - public-net
+            - app-net
+        volumes: 
+            - ./webserver/logs:/var/log/nginx/
+        ports:
+            - 6006:80
+        restart: always
+    pyapp:
+        container_name: pyapp
+        build:
+            context: ./py_app
+            dockerfile: Dockerfile
+        image: dockerdemo:pyapp
+        environment:
+            REDIS_HOST: database
+            REDIS_PASS: btv1sion
+        networks:
+            - app-net
+            - db-net
+        restart: always
+    database:
+        container_name: database
+        image: bitnami/redis
+        environment:
+            REDIS_PASSWORD: btv1sion
+        networks:
+            - db-net
+        restart: always

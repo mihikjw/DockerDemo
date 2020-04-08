@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+    title: Simple demo Python3 API definition
+    version: "1.0.0"
+paths:
+    /api/visits:
+        get:
+            summary: Returns the number of times the page has been visited
+            operationId: api.handlers.HttpHandlers.visits
+            responses:
+                '200':
+                    description: Correctly return the number of times the page has been visited
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                items:
+                                    properties:
+                                        visits:
+                                            type: integer
+                                            description: The count for the number of visits
+                '500':
+                    description: Error encountered processing request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                items:
+                                    properties:
+                                        error:
+                                            type: string
+                                            description: The error encountered on the server
