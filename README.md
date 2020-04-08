@@ -1,8 +1,26 @@
-# DockerDemo
+# Docker Demo
+
+<div align="center">
+    <img src="https://www.docker.com/sites/default/files/social/docker_facebook_share.png" alt="Docker Logo"/>
+</div>
 
 This repository is designed for beginners/newcomers to Docker to learn the software from the ground up, providing documentation, examples & links to other useful resources. I've attempted to link this document to as much source-code as possible so if you really want to get into how Docker/Containers work you can browse the source at your leisure.
 
 Some basic Linux Kernel & CLI knowledge is required to make best use of this document, however I've tried to explain these features in laymans terms for those not so familiar with Linux OS.
+
+1. [What Are Docker Containers?](#What-Are-Docker-Containers)
+    1. [Low-Level Functionality](#Low-Level-Functionality)
+        - [How To Write A Container From Scratch](#How-To-Write-A-Container-From-Scratch)
+    2. [What Is Docker?](#What-Is-Docker)
+    3. [Why Use Docker?](#Why-Use-Docker)
+2. [Installation, Docker CLI and Docker-Compose](#Installation-Docker-CLI-and-Docker-Compose)
+    1. [Docker CLI](#Docker-CLI)
+    2. [Docker-Compose](#Docker-Compose)
+3. [Running Your First Docker Container](#Running-Your-First-Docker-Container)
+4. [Building Your First Image](#Building-Your-First-Image)
+5. [Example Application](#Example-Application)
+6. [Conclusion](#Conclusion)
+7. [Useful Cheat Sheet](#Useful-Cheat-Sheet)
 
 ## What Are Docker Containers?
 ### Low-Level Functionality
@@ -40,7 +58,7 @@ You would not typically communicate directly with the Docker Socket however, but
     - Inspect: Docker allows you to 'inspect' a downloaded container, as well as get access to a bash terminal for a running container. You can use this to check the configuration of a 3rd party tool and either configure your own, or perform reverse-engineering. More on this functionality later
 - Monitor/Orchestrate applications: by default Docker Containers take over stdin, stdout, stderr when started. However you can easily add a flag to send these to the background and free your terminal, then easily use a single interface, the Docker CLI, to monitor and control running applications
 
-## Installation, Docker CLI & Docker-Compose
+## Installation, Docker CLI and Docker-Compose
 ### Docker CLI
 The Docker CLI is the primary way of interacting with a singular Docker Container. I won't bore you by copying and pasting the [official documentation](https://docs.docker.com/engine/reference/commandline/cli/), but instead give a short list of some of the most useful commands you will need. Please read the official Docker CLI documentation.
 - [Linux](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
@@ -148,7 +166,7 @@ This guide gives you an introduction into what a Docker Container is, how to run
 - [Docker Documentation](https://docs.docker.com/)
 - [Docker Reference Docs](https://docs.docker.com/reference/)
 
-## Useful Docker CLI/Compose Cheat Sheet
+## Useful Cheat Sheet
 - Docker CLI
     - Bash Shell in a running container: ```docker exec -ti {container_name} /bin/bash```
     - View all containers, including shut-down errors: ```docker ps -a```
