@@ -26,13 +26,15 @@ Some basic Linux Kernel & CLI knowledge is required to make best use of this doc
 ### Low-Level Functionality
 You may have heard containers referred to as 'lightweight virtual machines' - this is not true, although the output result looks similar. The fundamental concept is simply process isolation, this functionality is provided through the following [Linux Kernel](https://github.com/torvalds/linux) features:
 - [cgroups](https://github.com/torvalds/linux/tree/master/kernel/cgroup): control groups, allows you to limit & account for resource usage (CPU, memory, disk I/O, network etc) of a collection of processes. Initial Kernel release 2.6.24, 2008. Since this time further features have been added, including kernfs (cgroup virtual file systems - Kernel 3.14, 2014), firewalling and unified hierarchy
-- namespacing: allows the reuse of names in different contexts, there are 6 namespaces:
+- namespacing: allows the reuse of names in different contexts, there are 8 namespaces:
     - PID namespace
     - Mount namespace
     - UTS namespace
     - Network namespace
     - IPC namespace
     - User namespace
+    - Control Group (cgroup) namespace
+    - Time namespace
 
 This is a fundamental difference from a Virtual Machine, which must distribute their own Kernel. Containers still make use of the host operating system and have a PID, unlike a VM.
 
